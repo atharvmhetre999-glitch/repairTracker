@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RepairTrack – Device Repair Tracking System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation bar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <span class="logo">RepairTrack</span>
+      <nav>
+        <a href="#" data-page="home" class="nav-link active">Home</a>
+        <a href="#" data-page="track" class="nav-link">Track Repair</a>
+        <a href="#" data-page="admin" class="nav-link">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HOME PAGE -->
+    <section id="home" class="page active">
+      <div class="hero card">
+        <h1>Track Your Device Repair Easily</h1>
+        <p>
+          RepairTrack lets you check the current status of your mobile phone,
+          laptop, or other electronic device. Enter your Repair ID to see where
+          your repair stands and when it will be ready.
+        </p>
+        <button class="btn" data-page="track">Track Repair</button>
+      </div>
+    </section>
+
+    <!-- TRACK REPAIR PAGE -->
+    <section id="track" class="page">
+      <h2>Track Repair</h2>
+      <form id="track-form" class="card">
+        <label for="track-id">Repair ID</label>
+        <div class="row">
+          <input type="text" id="track-id" placeholder="e.g. RT-1001" required>
+          <button type="submit" class="btn">Track</button>
+        </div>
+      </form>
+
+      <p id="track-error" class="error hidden"></p>
+
+      <!-- Filled in by JavaScript when a record is found -->
+      <div id="track-result" class="card hidden">
+        <h3 id="res-device"></h3>
+        <dl class="details">
+          <div><dt>Customer</dt><dd id="res-customer"></dd></div>
+          <div><dt>Repair ID</dt><dd id="res-id"></dd></div>
+          <div><dt>Repair date</dt><dd id="res-date"></dd></div>
+          <div><dt>Estimated completion</dt><dd id="res-eta"></dd></div>
+          <div><dt>Current status</dt><dd><span id="res-status" class="badge"></span></dd></div>
+        </dl>
+        <ol id="timeline" class="timeline"></ol>
+      </div>
+    </section>
+
+    <!-- ADMIN PAGE -->
+    <section id="admin" class="page">
+      <h2>Repair Management</h2>
+
+      <form id="repair-form" class="card form-grid">
+        <div>
+          <label for="f-customer">Customer name</label>
+          <input type="text" id="f-customer" required>
+        </div>
+        <div>
+          <label for="f-device">Device name</label>
+          <input type="text" id="f-device" required>
+        </div>
+        <div>
+          <label for="f-id">Repair ID (auto-generated)</label>
+          <input type="text" id="f-id" readonly>
+        </div>
+        <div>
+          <label for="f-date">Repair date</label>
+          <input type="date" id="f-date" required>
+        </div>
+        <div>
+          <label for="f-eta">Expected completion date</label>
+          <input type="date" id="f-eta" required>
+        </div>
+        <div>
+          <label for="f-status">Repair status</label>
+          <select id="f-status"></select>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn">Add Repair</button>
+        </div>
+      </form>
+
+      <p id="admin-error" class="error hidden"></p>
+
+      <h3>All Repair Records</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Repair ID</th><th>Customer</th><th>Device</th>
+              <th>Repair date</th><th>Expected completion</th>
+              <th>Status</th><th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="records-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">RepairTrack – Device Repair Tracking System</footer>
+<script src="script.js"></script>
+</body>
+</html>
